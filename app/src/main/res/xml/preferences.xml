@@ -1,30 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 	<PreferenceCategory
-		android:title="Personal settings"
-		android:key="pref_key_personal_settings">
-	<EditTextPreference
-		android:key="pref_key_name"
-		android:title="Your name"
-		android:summary="Write your name"
-		android:hint="OG Loc"/>
+		android:key="pref_key_personal_settings"
+		android:title="Personal settings">
+		<EditTextPreference
+			android:hint="OG Loc"
+			android:key="pref_key_name"
+			android:summary="Write your name"
+			android:title="Your name"/>
+		<ListPreference
+			android:key="pref_key_job"
+			android:title="Your job"
+			android:summary="Choose from the list"
+			android:entries="@array/Jobs"
+			android:entryValues="@array/JobsData"
+		/>
 	</PreferenceCategory>
 	<PreferenceCategory
-		android:title="Basic settings"
-		android:key="pref_key_basic_settings">
+		android:key="pref_key_basic_settings"
+		android:title="Basic settings">
 		<CheckBoxPreference
+			android:defaultValue="false"
 			android:key="pref_key_toast_start"
-			android:title="Toasted start"
 			android:summary="Should the app show toast on start"
-			android:defaultValue="false"/>
+			android:title="Toasted start"/>
 	</PreferenceCategory>
 	<PreferenceCategory
-		android:title="Advanced settings"
-		android:key="pref_key_advanced_settings">
+		android:key="pref_key_advanced_settings"
+		android:title="Advanced settings">
 		<CheckBoxPreference
+			android:defaultValue="false"
 			android:key="pref_key_bonus_button"
-			android:title="Bonus button"
 			android:summary="Show bonus button in main activity"
-			android:defaultValue="false"/>
+			android:title="Bonus button"/>
 	</PreferenceCategory>
 </PreferenceScreen>
