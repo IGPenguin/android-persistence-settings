@@ -39,6 +39,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        bonusButton.setOnClickListener {
+            Toast.makeText(this,getString(R.string.bonus),Toast.LENGTH_LONG).show()
+        }
+
     }
 
     override fun onResume() {
