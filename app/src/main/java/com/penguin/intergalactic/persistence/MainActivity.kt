@@ -8,7 +8,7 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    var perfs : SharedPreferences? = null
+    var perfs: SharedPreferences? = null
     val PREFS_FILENAME = "preferences"
 
     var gtext: TextView? = null
@@ -21,23 +21,25 @@ class MainActivity : AppCompatActivity() {
         gswitch = findViewById(R.id.greetingsSwitch)
         gtext = findViewById(R.id.greetingsText)
 
-        perfs = this.getSharedPreferences(PREFS_FILENAME,0) //0 or combination of MODE_PRIVATE, MODE_WORLD_READABLE, MODE_WORLD_WRITEABLE or MODE_MULTI_PROCESS
+        perfs = this.getSharedPreferences(PREFS_FILENAME, 0) //0 or combination of MODE_PRIVATE, MODE_WORLD_READABLE, MODE_WORLD_WRITEABLE or MODE_MULTI_PROCESS
 
-        redrawText()
+        updateUI()
 
         gswitch!!.setOnCheckedChangeListener { buttonView, isChecked ->
             val editor = perfs!!.edit()
             editor.putBoolean(PREFS_FILENAME, isChecked)
             editor.apply()
-            redrawText()
+            updateUI()
         }
     }
 
-    fun redrawText() {
-        if (perfs!!.getBoolean(PREFS_FILENAME, false)) {
+    fun updateUI() {
+        val checked = perfs!!.getBoolean(PREFS_FILENAME, false)
+        if (checked) {
             gtext!!.text = "Different text 👋"
         } else {
             gtext!!.text = "Hello World!"
         }
+        gswitch!!.isChecked = checked
     }
 }
