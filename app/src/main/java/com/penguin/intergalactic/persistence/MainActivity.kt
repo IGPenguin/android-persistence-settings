@@ -58,9 +58,9 @@ class MainActivity : AppCompatActivity() {
 
         if (settingsPerfs!!.contains(KEY_PREF_NAME)) {
             if (settingsPerfs!!.contains(KEY_PERF_JOB_STRING)){
-                greetingsText!!.text = "Its you " + settingsPerfs!!.getString(KEY_PREF_NAME, "Nameless")+ " the " + settingsPerfs!!.getString(KEY_PERF_JOB_STRING,"Unemployed")
+                greetingsText!!.text = "Its you, " + settingsPerfs!!.getString(KEY_PREF_NAME, "Nameless")+ " the " + settingsPerfs!!.getString(KEY_PERF_JOB_STRING,"Unemployed")
             } else {
-                greetingsText!!.text = "Its you " + settingsPerfs!!.getString(KEY_PREF_NAME, "Nameless")
+                greetingsText!!.text = "Its you, " + settingsPerfs!!.getString(KEY_PREF_NAME, "Nameless")
             }
 
         } else {
