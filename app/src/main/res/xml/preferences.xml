@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
+	<PreferenceCategory
+		android:title="Basic settings"
+		android:key="pref_key_basic_settings">
+		<CheckBoxPreference
+			android:key="pref_key_toast_start"
+			android:title="Toasted start"
+			android:summary="Should the app show toast on start"
+			android:defaultValue="false"/>
+	</PreferenceCategory>
+	<PreferenceCategory
+		android:title="Advanced settings"
+		android:key="pref_key_advanced_settings">
+		<CheckBoxPreference
+			android:key="pref_key_bonus_button"
+			android:title="Bonus button"
+			android:summary="Show bonus button in main activity"
+			android:defaultValue="false"/>
+	</PreferenceCategory>
 </PreferenceScreen>
