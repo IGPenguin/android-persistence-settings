@@ -9,28 +9,30 @@
 
 	<TextView
 		android:id="@+id/greetingsText"
-		android:textSize="16sp"
-		android:textColor="@color/colorPrimaryDark"
-		android:padding="8dp"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:padding="32dp"
+		android:text="Hello World!"
 		android:textAlignment="center"
-		android:text="Hello World!"/>
+		android:textColor="@color/colorPrimaryDark"
+		android:textSize="22sp"/>
 	<Switch
-		android:id="@+id/greetingsSwitch"
-		android:padding="8dp"
-		android:text="Different text"
+		android:id="@+id/moreSwitch"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		android:padding="8dp"
+		android:text="Show more"/>
 	<Button
-		android:text="Open settings"
 		android:id="@+id/settingsButton"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		android:text="Open settings"
+		android:visibility="gone"/>
 	<Button
-		android:text="Bonus"
 		android:id="@+id/bonusButton"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		android:text="Bonus"
+		android:visibility="gone"/>
 
 </LinearLayout>

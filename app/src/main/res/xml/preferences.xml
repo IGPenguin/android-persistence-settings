@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 	<PreferenceCategory
+		android:title="Personal settings"
+		android:key="pref_key_personal_settings">
+	<EditTextPreference
+		android:key="pref_key_name"
+		android:title="Your name"
+		android:summary="Write your name"
+		android:hint="OG Loc"/>
+	</PreferenceCategory>
+	<PreferenceCategory
 		android:title="Basic settings"
 		android:key="pref_key_basic_settings">
 		<CheckBoxPreference

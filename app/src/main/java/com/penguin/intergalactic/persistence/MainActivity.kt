@@ -3,54 +3,69 @@ package com.penguin.intergalactic.persistence
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var perfs: SharedPreferences? = null
-    val PREFS_FILENAME = "preferences"
+    var settingsPerfs: SharedPreferences? = null
+    val CUSTOM_PREFS_FILENAME = "preferences"
+    val SHOW_MORE_KEY = "custom_key_more"
+    var customPerfs: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        perfs = this.getSharedPreferences(PREFS_FILENAME, 0) //0 or combination of MODE_PRIVATE, MODE_WORLD_READABLE, MODE_WORLD_WRITEABLE or MODE_MULTI_PROCESS
+        settingsPerfs = PreferenceManager.getDefaultSharedPreferences(this)
+        customPerfs = this.getSharedPreferences(CUSTOM_PREFS_FILENAME, 0) //0 or combination of MODE_PRIVATE, MODE_WORLD_READABLE, MODE_WORLD_WRITEABLE or MODE_MULTI_PROCESS
 
-        updateUI()
+        if (settingsPerfs!!.getBoolean(KEY_PREF_TOAST, false)){
+            Toast.makeText(this,"Toasted start!!!",Toast.LENGTH_LONG).show()
+        }
 
-        greetingsSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
-            val editor = perfs!!.edit()
-            editor.putBoolean(PREFS_FILENAME, isChecked)
+        moreSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            val editor = customPerfs!!.edit()
+            editor.putBoolean(SHOW_MORE_KEY, isChecked)
             editor.apply()
             updateUI()
         }
 
         settingsButton.setOnClickListener {
-            val intent = Intent(this,SettingsActivity::class.java)
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
 
     }
 
-    override fun onResume() { // NOT WORKING
+    override fun onResume() {
         super.onResume()
-        if (perfs!!.getBoolean(KEY_PREF_BONUS_BUTTON, false)){
-            bonusButton.visibility= View.VISIBLE
-        }else {
-            bonusButton.visibility= View.GONE
-        }
-
+        updateUI()
     }
 
     fun updateUI() {
-        val checked = perfs!!.getBoolean(PREFS_FILENAME, false)
-        if (checked) {
-            greetingsText!!.text = "Different text 👋"
+        val showMore = customPerfs!!.getBoolean(SHOW_MORE_KEY, false)
+        moreSwitch!!.isChecked = showMore
+
+        if (showMore) {
+            settingsButton.visibility = View.VISIBLE
+        } else {
+            settingsButton.visibility = View.GONE
+        }
+
+        if (settingsPerfs!!.contains(KEY_PREF_NAME)) {
+            greetingsText!!.text = "Its you " + settingsPerfs!!.getString(KEY_PREF_NAME, "Nameless")+"!"
         } else {
             greetingsText!!.text = "Hello World!"
         }
-        greetingsSwitch!!.isChecked = checked
+
+        if (settingsPerfs!!.getBoolean(KEY_PREF_BONUS_BUTTON, false)) {
+            bonusButton.visibility = View.VISIBLE
+        } else {
+            bonusButton.visibility = View.GONE
+        }
     }
 }
