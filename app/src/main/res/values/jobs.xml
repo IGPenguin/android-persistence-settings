@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <string-array name="Jobs">
+	<item>"Jobless"</item>
 	<item>"Policeman"</item>
 	<item>"Secret Hitler"</item>
 	<item>"Android Engineer"</item>

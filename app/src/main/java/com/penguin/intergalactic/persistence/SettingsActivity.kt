@@ -13,35 +13,34 @@ const val KEY_PERF_JOB_STRING = "pref_key_job_string"
 const val KEY_PREF_BONUS_BUTTON = "pref_key_bonus_button"
 const val KEY_PREF_TOAST = "pref_key_toast_start"
 
-var settingsPerfs: SharedPreferences? = null
-var namePreference: EditTextPreference? = null
-var jobPreference: ListPreference? = null
+lateinit var settingsPrefs: SharedPreferences
+lateinit var namePreference: EditTextPreference
+lateinit var jobPreference: ListPreference
 
-
-class SettingsActivity : PreferenceActivity() {
+class SettingsActivity : PreferenceActivity() { //TODO resolve deprecations - use fragments
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         addPreferencesFromResource(R.xml.preferences)
 
-        settingsPerfs = PreferenceManager.getDefaultSharedPreferences(this)
+        settingsPrefs = PreferenceManager.getDefaultSharedPreferences(this)
         namePreference = findPreference(KEY_PREF_NAME) as EditTextPreference
         jobPreference = findPreference(KEY_PERF_JOB) as ListPreference
 
-        namePreference!!.summary = settingsPerfs!!.getString(KEY_PREF_NAME,"Nameless")
-        jobPreference!!.summary = jobPreference!!.entries.get(settingsPerfs!!.getString(KEY_PERF_JOB,"0").toInt())
+        namePreference.summary = settingsPrefs.getString(KEY_PREF_NAME,"Nameless")
+        jobPreference.summary = jobPreference.entries.get(settingsPrefs.getString(KEY_PERF_JOB,"0").toInt())
 
-        namePreference!!.setOnPreferenceChangeListener { preference, value ->
+        namePreference.setOnPreferenceChangeListener { preference, value ->
             preference.summary = value.toString()
             true
         }
 
-        jobPreference!!.setOnPreferenceChangeListener { preference, value ->
+        jobPreference.setOnPreferenceChangeListener { preference, value ->
             if (preference is ListPreference) {
                 val index = preference.findIndexOfValue(value.toString())
                 val job = preference.entries.get(index)
                 preference.summary = job
-                val editor = settingsPerfs!!.edit()
+                val editor = settingsPrefs.edit()
                 editor.putString(KEY_PERF_JOB_STRING, job.toString())
                 editor.apply()
             }
