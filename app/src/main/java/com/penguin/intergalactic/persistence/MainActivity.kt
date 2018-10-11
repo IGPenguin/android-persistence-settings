@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         settingsPerfs = PreferenceManager.getDefaultSharedPreferences(this)
         customPerfs = this.getSharedPreferences(CUSTOM_PREFS_FILENAME, 0) //0 or combination of MODE_PRIVATE, MODE_WORLD_READABLE, MODE_WORLD_WRITEABLE or MODE_MULTI_PROCESS
 
-        if (settingsPerfs.getBoolean(KEY_PREF_TOAST, false)){
-            Toast.makeText(this,"Toasted start!!!",Toast.LENGTH_LONG).show()
+        if (settingsPerfs.getBoolean(KEY_PREF_TOAST, false)) {
+            Toast.makeText(this, "Toasted start!!!", Toast.LENGTH_LONG).show()
         }
 
         moreSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         bonusButton.setOnClickListener {
-            Toast.makeText(this,getString(R.string.bonus),Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.bonus), Toast.LENGTH_LONG).show()
         }
 
     }
@@ -61,8 +61,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (settingsPerfs.contains(KEY_PREF_NAME)) {
-            if (settingsPerfs.contains(KEY_PERF_JOB_STRING)){
-                greetingsText.text = "Its you, " + settingsPerfs.getString(KEY_PREF_NAME, "Nameless")+ " the " + settingsPerfs.getString(KEY_PERF_JOB_STRING,"Unemployed")
+            if (settingsPerfs.contains(KEY_PERF_JOB_STRING)) {
+                greetingsText.text = "Its you, " + settingsPerfs.getString(KEY_PREF_NAME, "Nameless") + " the " + settingsPerfs.getString(KEY_PERF_JOB_STRING, "Unemployed")
             } else {
                 greetingsText.text = "Its you, " + settingsPerfs.getString(KEY_PREF_NAME, "Nameless")
             }

@@ -27,8 +27,8 @@ class SettingsActivity : PreferenceActivity() { //TODO resolve deprecations - us
         namePreference = findPreference(KEY_PREF_NAME) as EditTextPreference
         jobPreference = findPreference(KEY_PERF_JOB) as ListPreference
 
-        namePreference.summary = settingsPrefs.getString(KEY_PREF_NAME,"Nameless")
-        jobPreference.summary = jobPreference.entries.get(settingsPrefs.getString(KEY_PERF_JOB,"0").toInt())
+        namePreference.summary = settingsPrefs.getString(KEY_PREF_NAME, "Nameless")
+        jobPreference.summary = jobPreference.entries.get(settingsPrefs.getString(KEY_PERF_JOB, "0").toInt())
 
         namePreference.setOnPreferenceChangeListener { preference, value ->
             preference.summary = value.toString()
